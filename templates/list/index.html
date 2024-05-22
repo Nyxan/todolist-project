@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="container">
+    <h1 class="my-4">TODO List</h1>
+    <a href="{% url 'list:task-add' %}" class="btn btn-primary mb-3">Add Task</a>
+    <ul class="list-group">
+      {% if tasks %}
+        {% for task in tasks %}
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <strong>{{ task.content }}</strong> 
+                <span class="badge {% if task.is_done %}badge-success{% else %}badge-danger{% endif %}">
+                  {{ task.is_done|yesno:"Done,Not done" }}
+                </span>
+              </div>
+              <div class="btn-group" role="group">
+                <a href="{% url 'list:task-delete' task.id %}" class="btn btn-sm btn-danger mr-2">Delete</a>
+                <a href="{% url 'list:task-update' task.id %}" class="btn btn-sm btn-secondary mr-2">Update</a>
+            </div>
+            <small class="text-muted">
+              Created: {{ task.created_at }}
+              {% if task.deadline %} | Deadline: {{ task.deadline }}{% endif %}
+            </small>
+            <br>
+            <small>
+              Tags: 
+              {% for tag in task.tags.all %}
+                <span class="badge badge-info">{{ tag.name }}</span> 
+              {% endfor %}
+            </small>
+          </li>
+        {% endfor %}
+      {% else %}
+        <li class="list-group-item">No tasks</li>
+      {% endif %}
+    </ul>
+  </div>
+{% endblock %}
