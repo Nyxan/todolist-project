@@ -10,7 +10,7 @@
           <li class="list-group-item">
             <div class="d-flex justify-content-between align-items-center">
               <div>
-                <strong>{{ task.content }}</strong> 
+                <strong>{{ task.content }}</strong>
                 <span class="badge {% if task.is_done %}badge-success{% else %}badge-danger{% endif %}">
                   {{ task.is_done|yesno:"Done,Not done" }}
                 </span>
@@ -31,9 +31,9 @@
             </small>
             <br>
             <small>
-              Tags: 
+              Tags:
               {% for tag in task.tags.all %}
-                <span class="badge badge-info">{{ tag.name }}</span> 
+                <span class="badge badge-info">{{ tag.name }}</span>
               {% endfor %}
             </small>
           </li>
