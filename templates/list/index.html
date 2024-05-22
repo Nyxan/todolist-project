@@ -18,6 +18,12 @@
               <div class="btn-group" role="group">
                 <a href="{% url 'list:task-delete' task.id %}" class="btn btn-sm btn-danger mr-2">Delete</a>
                 <a href="{% url 'list:task-update' task.id %}" class="btn btn-sm btn-secondary mr-2">Update</a>
+                {% if task.is_done %}
+                  <a href="{% url 'list:toggle-status' task.id %}" class="btn btn-sm btn-warning">Undo</a>
+                {% else %}
+                  <a href="{% url 'list:toggle-status' task.id %}" class="btn btn-sm btn-success">Complete</a>
+                {% endif %}
+              </div>
             </div>
             <small class="text-muted">
               Created: {{ task.created_at }}

@@ -8,7 +8,8 @@ from list.views import (
     TagsList,
     TagCreateView,
     TagsUpdateView,
-    TagDeleteView,)
+    TagDeleteView,
+    toggle_status)
 
 
 urlpatterns = [
@@ -20,6 +21,7 @@ urlpatterns = [
     path('tags/add/', TagCreateView.as_view(), name='tag-add'),
     path('tag/<int:pk>/update/', TagsUpdateView.as_view(), name='tag-update'),
     path('tags/<int:pk>/delete/', TagDeleteView.as_view(), name='tag-delete'),
+    path('toggle/<int:pk>/', toggle_status, name='toggle-status'),
 ]
 
 app_name = "list"
