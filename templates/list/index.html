@@ -27,7 +27,13 @@
             </div>
             <small class="text-muted">
               Created: {{ task.created_at }}
-              {% if task.deadline %} | Deadline: {{ task.deadline }}{% endif %}
+              {% if task.deadline %}
+                {% if task.deadline < timezone.now %}
+                  <span style="color: red;">Deadline: {{ task.deadline }} !</span>
+                {% else %}
+                  Deadline: {{ task.deadline }}
+                {% endif %}
+              {% endif %}
             </small>
             <br>
             <small>
